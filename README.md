@@ -47,6 +47,12 @@ yarn build
 
 ## Архитектура
 
+В данном проекте будет реализован паттерн MVP.
+Данные о приложении будет хранить в себе модель,
+выполнять логику презентер, выводить данные будет представление.
+Презентер будет общаться с моделью и представлением через интерфейсы
+В роли презентера выступает EventEmitter
+
 ### Base
 
 1. Класс api. Реализует методы запросов на сервер get, post
@@ -68,11 +74,15 @@ yarn build
 
 ### class Product
 
+Вся инфа о продукте
+
 getProductList(): Product[] </br>
 getProduct(id: String): Product </br>
 addToCart(id: string): void </br>
 
 ### class Cart
+
+Вся инфа о корзине
 
 cartItems: Product[]
 
@@ -80,6 +90,8 @@ removeFromCart(id: string): void </br>
 getTotalPrice(data: Product[]): number </br>
 
 ### class User
+
+Все данные юзера
 
 setPaymentMethod(): string </br>
 setPhoneNumber(): string </br>
@@ -90,11 +102,15 @@ setUserData(payMethod: string, pnumber: string, address: string, email: string) 
 
 ### class UserOrder
 
+Данные о заказе
+
 orderProducts(userData: [] ,orderedItems: []): postResponse </br>
 
 ### View
 
 ### class Card
+
+Карточка товара
 
 template: HTMLTemplateElement </br>
 createCard(item: Product): HTMLElement </br>
@@ -102,6 +118,8 @@ render(element: HTMLElement, template: HTMLTemplateElement): HTMLElement </br>
 addToCart(id: string): void </br>
 
 ### class Modal
+
+Модальное окно
 
 products: Product[]
 getPaymentMethod(): string </br>
@@ -122,6 +140,3 @@ createModal(container: HTMLElement | HTMLFormElement, : Object): HTMLElement </b
 renderModal(element: HTMLElement): HTMLElement </br>
 
 purchase(items: Product[], data: Object) </br>
-
-В роли контроллера выступает index.ts
-В нем будут взаимодействовать Model и View слои
